@@ -1191,10 +1191,6 @@
                 <p style="margin-top: 15px;"><strong>Recent case (Zelinsky, May 2025):</strong> Upheld COTE rule even for remote workers. If you're an employee of NY firm, consider converting to independent contractor or consultant structure.</p>
             </div>
 
-            <div class="chart-container">
-                <h3>Business Income Sourcing: NY vs. FL Scenarios</h3>
-                <canvas id="incomeSourceChart"></canvas>
-            </div>
         </div>
 
         <!-- Section 6: Audit Defense -->
@@ -2044,40 +2040,6 @@
                     plugins: {
                         legend: {
                             position: 'bottom'
-                        }
-                    }
-                }
-            });
-
-            // Income Source Chart
-            new Chart(document.getElementById('incomeSourceChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['Self-Employed FL Work', 'Self-Employed NY Work', 'W-2 Remote (COTE applies)', 'Securities Trading'],
-                    datasets: [
-                        {
-                            label: 'NY Taxable',
-                            data: [0, 100, 100, 0],
-                            backgroundColor: colors.red
-                        },
-                        {
-                            label: 'FL Only (No NY Tax)',
-                            data: [100, 0, 0, 100],
-                            backgroundColor: colors.green
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            }
                         }
                     }
                 }
