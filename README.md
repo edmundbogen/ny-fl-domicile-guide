@@ -16,7 +16,7 @@ A comprehensive, interactive guide for changing domicile from New York to Florid
 
 ## Access
 
-Password: `stAndrews2025`
+Password: `St. Andrews 2026`
 
 ## Disclaimer
 
