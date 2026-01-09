@@ -1482,44 +1482,6 @@
                 </tbody>
             </table>
 
-            <div class="calculator">
-                <h3>St. Andrews Affordability Calculator</h3>
-                <p style="margin-bottom: 30px; color: #666;">Calculate your true purchasing power at St. Andrews:</p>
-
-                <div class="calc-input-group">
-                    <label>Total Budget Available</label>
-                    <input type="number" id="totalBudget" value="1700000" step="50000" oninput="calculateBudget()">
-                </div>
-
-                <div class="calc-result" id="budgetResult">
-                    <h4>Your St. Andrews Purchasing Power</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 20px 0;">
-                        <div>
-                            <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Entry Fees (Membership + POA) - 2026 Estimate</p>
-                            <p style="font-size: 32px; font-weight: 300; color: #1a3e5c;">$500,000</p>
-                        </div>
-                        <div>
-                            <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Net Funds for Home Purchase</p>
-                            <p style="font-size: 32px; font-weight: 300; color: #00a8e1;" id="netPurchase">$0</p>
-                        </div>
-                    </div>
-                    <p id="budgetAssessment" style="margin-top: 20px; padding: 20px; background: #f4f4f4; border-radius: 4px;"></p>
-                </div>
-
-                <div style="margin-top: 30px; padding: 30px; background: white; border: 2px solid #e8e8e8; border-radius: 4px;">
-                    <h4 style="color: #1a3e5c; margin-bottom: 20px;">First-Year Total Cash Requirement</h4>
-                    <p style="color: #666; line-height: 1.8;">Beyond the home purchase and entry fees, budget for first-year carrying costs:</p>
-                    <ul style="margin: 20px 0; padding-left: 20px; color: #666;">
-                        <li>Annual dues and assessments: <strong>$59,207</strong></li>
-                        <li>Property taxes (est. $1.3M home): <strong>~$15,000-18,000</strong> (first year, before homestead)</li>
-                        <li>Property insurance: <strong>~$8,000-12,000</strong> (flood + wind + homeowners)</li>
-                        <li>Utilities: <strong>~$6,000-10,000</strong> annually</li>
-                        <li>Maintenance/landscaping: <strong>~$10,000-15,000</strong></li>
-                    </ul>
-                    <p style="margin-top: 20px; color: #1a3e5c; font-weight: 600;">Est. Total First-Year Carrying Costs: $98,000-$114,000</p>
-                </div>
-            </div>
-
             <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Current Market Analysis</h3>
 
             <div class="card-grid">
@@ -1621,57 +1583,10 @@
                 <p style="margin-top: 15px;">Use this to your advantage: Join committees, participate in tournaments, attend social events. Every swipe of your member card is documentation of FL domicile.</p>
             </div>
 
-            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Alternative Communities to Consider</h3>
-
-            <p style="color: #666; line-height: 1.8; margin-bottom: 30px;">If the $1.7M budget constraint is firm, these nearby communities offer similar luxury with more flexible membership options:</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Community</th>
-                        <th>Membership Fee</th>
-                        <th>Type</th>
-                        <th>Entry-Level Homes</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Broken Sound</strong></td>
-                        <td>$85,000-$150,000</td>
-                        <td>Optional golf</td>
-                        <td>$600K-$1.2M</td>
-                        <td>Social memberships available, 36 holes, closer to beach</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Boca Pointe</strong></td>
-                        <td>$35,000-$75,000</td>
-                        <td>Flexible tiers</td>
-                        <td>$400K-$900K</td>
-                        <td>Multiple membership levels, family-friendly</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Woodfield Country Club</strong></td>
-                        <td>$50,000-$120,000</td>
-                        <td>Golf or social</td>
-                        <td>$500K-$1M</td>
-                        <td>27 holes, more affordable than St. Andrews</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Addison Reserve</strong></td>
-                        <td>$150,000-$250,000</td>
-                        <td>Mandatory golf</td>
-                        <td>$1.2M-$2.5M</td>
-                        <td>Similar prestige, slightly lower fees than St. Andrews</td>
-                    </tr>
-                </tbody>
-            </table>
-
             <div class="warning-box">
                 <h4>Recommendation for Jonathan & Larissa</h4>
                 <p><strong>If budget is firm at $1.7M total:</strong> St. Andrews will be challenging. You'd have only $1.2M for home purchase (after estimated $500K in entry fees), which puts you at the absolute bottom of the market with limited inventory and likely extensive renovation needs.</p>
                 <p style="margin-top: 15px;"><strong>If you can increase to $2.5M total:</strong> St. Andrews becomes viable with $2.0M for home purchase, accessing updated smaller estates in the "concierge" section with golf/water views.</p>
-                <p style="margin-top: 15px;"><strong>Alternative strategy:</strong> Consider Broken Sound or similar community for first 2-3 years to establish FL domicile, then trade up to St. Andrews once domicile is secure and budget allows. This spreads the estimated $500K entry fees over time while still achieving your domicile objectives.</p>
                 <p style="margin-top: 15px;"><em>Note: All St. Andrews fees are estimates and subject to change pending official 2026 announcement.</em></p>
             </div>
         </div>
@@ -1937,7 +1852,7 @@
 
     <script>
         // Password Protection
-        const PASSWORD = "St. Andrews 2026"; // You can change this
+        const PASSWORD = "Jonathan"; // You can change this
 
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
@@ -2033,32 +1948,9 @@
             document.getElementById('otherDays').textContent = otherDays + ' days';
         }
 
-        // Budget Calculator
-        function calculateBudget() {
-            const total = parseInt(document.getElementById('totalBudget').value) || 0;
-            const fees = 500000; // Updated 2026 estimate: $450K membership + $50K POA
-            const netPurchase = total - fees;
-
-            document.getElementById('netPurchase').textContent = '$' + netPurchase.toLocaleString();
-
-            let assessment = '';
-            if (netPurchase < 1200000) {
-                assessment = '🚨 <strong>Very Challenging:</strong> With only $' + netPurchase.toLocaleString() + ' for home purchase, you\'ll struggle to find suitable inventory at St. Andrews. Entry-level homes typically start around $1.5M. Consider increasing total budget or exploring alternative communities like Broken Sound.';
-            } else if (netPurchase < 1500000) {
-                assessment = '⚠️ <strong>Limited Options:</strong> This budget puts you at the bottom of St. Andrews market. Expect older homes requiring significant renovation, likely no views. Inventory at this price point is very limited.';
-            } else if (netPurchase < 2000000) {
-                assessment = '✓ <strong>Entry-Level Viable:</strong> This budget accesses the "concierge" section and smaller updated homes. You\'ll have reasonable selection, though views and prime locations will be limited.';
-            } else {
-                assessment = '✅ <strong>Strong Position:</strong> This budget provides good access to updated homes with potential golf/water views. You\'ll have solid inventory selection in the $2M-$2.5M range.';
-            }
-
-            document.getElementById('budgetAssessment').innerHTML = assessment;
-        }
-
         // Initialize all calculations
         calculateSavings();
         calculateDays();
-        calculateBudget();
 
         // Charts
         function initCharts() {
