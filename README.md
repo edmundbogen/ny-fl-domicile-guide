@@ -1,6 +1,6 @@
 # NY to Florida Domicile Transition Guide
 
-**Prepared exclusively for Jonathan & Larissa**
+**Prepared exclusively for Jonathan & Larisa**
 
 A comprehensive, interactive guide for changing domicile from New York to Florida, curated by Edmund Bogen.
 
