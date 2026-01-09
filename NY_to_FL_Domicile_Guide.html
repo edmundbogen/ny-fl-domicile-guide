@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NY to Florida Domicile Transition Guide - Jonathan & Larissa</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #ffffff;
+        }
+
+        /* Password Screen */
+        #passwordScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a3e5c 0%, #00a8e1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .password-container {
+            background: white;
+            padding: 60px 80px;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .password-container h1 {
+            color: #1a3e5c;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .password-container p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e8e8e8;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .password-container input:focus {
+            outline: none;
+            border-color: #00a8e1;
+        }
+
+        .password-container button {
+            width: 100%;
+            padding: 16px 40px;
+            background: #00a8e1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .password-container button:hover {
+            background: #0090c4;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Main Content */
+        #mainContent {
+            display: none;
+        }
+
+        /* Header */
+        header {
+            background: #1a3e5c;
+            color: white;
+            padding: 40px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .logo strong {
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a3e5c 0%, #00a8e1 100%);
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero .disclaimer {
+            max-width: 900px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-left: 4px solid #00a8e1;
+            font-size: 14px;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .hero .disclaimer strong {
+            color: #00a8e1;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            background: white;
+            border-bottom: 2px solid #e8e8e8;
+            position: sticky;
+            top: 120px;
+            z-index: 99;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            gap: 40px;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 20px 0;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            color: #00a8e1;
+        }
+
+        .nav-tab.active {
+            color: #1a3e5c;
+            border-bottom-color: #00a8e1;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #1a3e5c;
+            margin-bottom: 20px;
+            border-left: 4px solid #00a8e1;
+            padding-left: 20px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+            max-width: 900px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #e8e8e8;
+            padding: 40px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: #00a8e1;
+            box-shadow: 0 10px 30px rgba(0,168,225,0.1);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a3e5c;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .card ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin: 10px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #00a8e1;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -48px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00a8e1;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px #00a8e1;
+        }
+
+        .timeline-item h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a3e5c;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .timeline-item ul {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: white;
+        }
+
+        th {
+            background: #1a3e5c;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #e8e8e8;
+            color: #666;
+        }
+
+        tr:hover {
+            background: #f4f4f4;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: white;
+            padding: 40px;
+            border: 2px solid #e8e8e8;
+            border-radius: 4px;
+            margin: 40px 0;
+        }
+
+        .chart-container h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a3e5c;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Interactive Calculator */
+        .calculator {
+            background: #f4f4f4;
+            padding: 40px;
+            border-radius: 4px;
+            margin: 40px 0;
+        }
+
+        .calculator h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a3e5c;
+            margin-bottom: 30px;
+        }
+
+        .calc-input-group {
+            margin-bottom: 25px;
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-weight: 500;
+            color: #1a3e5c;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .calc-input-group input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e8e8e8;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .calc-result {
+            background: white;
+            padding: 30px;
+            border-radius: 4px;
+            margin-top: 30px;
+            border-left: 4px solid #00a8e1;
+        }
+
+        .calc-result h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a3e5c;
+            margin-bottom: 15px;
+        }
+
+        .calc-result .big-number {
+            font-size: 48px;
+            font-weight: 300;
+            color: #00a8e1;
+            margin: 20px 0;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box h4 {
+            color: #e65100;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .warning-box p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Success Box */
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 4px;
+        }
+
+        .success-box h4 {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Checklist */
+        .checklist {
+            margin: 40px 0;
+        }
+
+        .checklist-item {
+            background: white;
+            border: 2px solid #e8e8e8;
+            padding: 20px 30px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .checklist-item:hover {
+            border-color: #00a8e1;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .checklist-item.completed {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a3e5c;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+            }
+
+            .content-section {
+                padding: 40px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="passwordScreen">
+        <div class="password-container">
+            <h1>Private Access</h1>
+            <p>Prepared exclusively for Jonathan & Larissa</p>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button onclick="checkPassword()">ACCESS GUIDE</button>
+            <p class="error-message" id="errorMessage">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <strong>THE EDMUND BOGEN TEAM</strong><br>
+                    <span style="font-size: 12px; opacity: 0.8;">AT DOUGLAS ELLIMAN REAL ESTATE</span>
+                </div>
+                <div style="font-size: 14px; opacity: 0.9;">NY to Florida Domicile Guide</div>
+            </div>
+        </header>
+
+        <div class="hero">
+            <h1>New York to Florida</h1>
+            <h2>Comprehensive Domicile Transition Guide</h2>
+            <p style="font-size: 18px; margin-top: 20px;">Prepared exclusively for Jonathan & Larissa</p>
+
+            <div class="disclaimer">
+                <strong>IMPORTANT DISCLAIMER:</strong> This comprehensive guide has been curated by Edmund Bogen through extensive research utilizing multiple online resources and artificial intelligence platforms. This material is provided for informational and educational purposes only and does NOT constitute legal, tax, or accounting advice. Every individual's situation is unique, and domicile changes involve complex legal and financial considerations that require professional guidance. Jonathan and Larissa should consult with qualified attorneys, CPAs, and financial advisors before making any decisions based on this information. This research should serve as a foundation for discussions with your professional advisors, not as a substitute for their counsel.
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <div class="nav-container">
+                <div class="nav-tab active" onclick="showSection(0)">Overview</div>
+                <div class="nav-tab" onclick="showSection(1)">Tax Savings</div>
+                <div class="nav-tab" onclick="showSection(2)">The 5 Factors</div>
+                <div class="nav-tab" onclick="showSection(3)">Action Timeline</div>
+                <div class="nav-tab" onclick="showSection(4)">Business Considerations</div>
+                <div class="nav-tab" onclick="showSection(5)">Audit Defense</div>
+                <div class="nav-tab" onclick="showSection(6)">St. Andrews</div>
+                <div class="nav-tab" onclick="showSection(7)">Professional Team</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <div class="content-section active" id="section0">
+            <div class="section-header">
+                <h2>Understanding the Opportunity</h2>
+                <p>Changing domicile from New York to Florida represents one of the most significant financial decisions high-net-worth individuals can make. For Jonathan and Larissa, this transition offers substantial tax savings, asset protection benefits, and lifestyle advantages—but only if executed with precision and thoroughness.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>The Domicile Concept</h3>
+                    <p><strong>Domicile</strong> is your permanent, primary home—the place you intend to return to whenever you're away. Unlike "residence" (where you live), you can have only ONE domicile at a time.</p>
+                    <p style="margin-top: 15px;">New York law presumes your domicile remains New York until you provide <strong>"clear and convincing evidence"</strong> that you've abandoned it and established a new one in Florida.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Why NY Fights Back</h3>
+                    <p>New York State maintains <strong>300+ auditors</strong> whose sole job is challenging domicile changes. They generated over <strong>$3 billion</strong> from residency audits in 2022-2023 alone.</p>
+                    <p style="margin-top: 15px;">High-income earners ($1M+) face near-certain audit scrutiny. The state uses cell phone records, E-ZPass data, credit card statements, and even veterinary records to verify your true location.</p>
+                </div>
+
+                <div class="card">
+                    <h3>The Dual Threat</h3>
+                    <p>New York uses TWO tests to keep taxing you:</p>
+                    <ul>
+                        <li><strong>Domicile Test:</strong> Where you consider "home"</li>
+                        <li><strong>Statutory Residency:</strong> Maintaining a NY home for 10+ months AND spending 184+ days in NY</li>
+                    </ul>
+                    <p style="margin-top: 15px;">You must win BOTH tests to escape NY taxation completely.</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>Critical Understanding for Jonathan & Larissa</h4>
+                <p>Simply buying a Florida home and getting a Florida driver's license is NOT enough. The recent <strong>Matter of Hoff (October 2025)</strong> case confirmed this: A couple who obtained Florida licenses, registered to vote, filed declarations of domicile, and spent fewer than 165 days in NY still LOST because they hadn't genuinely reoriented their life around Florida. The tribunal stated: <em>"Formal declarations are less significant than informal acts demonstrating an individual's general habit of life."</em></p>
+            </div>
+
+            <div class="chart-container">
+                <h3>NY Residency Audit Activity (2018-2023)</h3>
+                <canvas id="auditChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Section 2: Tax Savings -->
+        <div class="content-section" id="section1">
+            <div class="section-header">
+                <h2>Your Financial Opportunity</h2>
+                <p>The tax differential between New York and Florida is substantial and permanent. For high-income professionals like Jonathan and Larissa, the annual savings compound into generational wealth preservation.</p>
+            </div>
+
+            <div class="calculator">
+                <h3>Tax Savings Calculator</h3>
+                <p style="margin-bottom: 30px; color: #666;">Enter your estimated income to see your potential annual savings:</p>
+
+                <div class="calc-input-group">
+                    <label>Jonathan's Annual Income</label>
+                    <input type="number" id="jonathanIncome" value="1000000" oninput="calculateSavings()">
+                </div>
+
+                <div class="calc-input-group">
+                    <label>Larissa's Annual Income (Home Healthcare Business)</label>
+                    <input type="number" id="larissaIncome" value="250000" oninput="calculateSavings()">
+                </div>
+
+                <div class="calc-result" id="calcResult">
+                    <h4>Your Estimated Annual Tax Savings</h4>
+                    <div class="big-number" id="savingsAmount">$0</div>
+                    <p id="savingsBreakdown"></p>
+                    <p style="margin-top: 20px; color: #666; font-size: 14px;"><strong>10-Year Wealth Preservation:</strong> <span id="tenYearSavings" style="color: #00a8e1; font-weight: 600;"></span></p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>NY vs. FL Tax Burden Comparison</h3>
+                <canvas id="taxComparisonChart"></canvas>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Income Level</th>
+                        <th>NY State + NYC Tax</th>
+                        <th>Florida Tax</th>
+                        <th>Annual Savings</th>
+                        <th>10-Year Savings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$500,000</td>
+                        <td>$61,500</td>
+                        <td>$0</td>
+                        <td>$61,500</td>
+                        <td>$615,000</td>
+                    </tr>
+                    <tr>
+                        <td>$1,000,000</td>
+                        <td>$117,000</td>
+                        <td>$0</td>
+                        <td>$117,000</td>
+                        <td>$1,170,000</td>
+                    </tr>
+                    <tr>
+                        <td>$2,000,000</td>
+                        <td>$252,500</td>
+                        <td>$0</td>
+                        <td>$252,500</td>
+                        <td>$2,525,000</td>
+                    </tr>
+                    <tr>
+                        <td>$5,000,000</td>
+                        <td>$643,500</td>
+                        <td>$0</td>
+                        <td>$643,500</td>
+                        <td>$6,435,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <h4>Beyond Income Tax: Additional Florida Advantages</h4>
+                <ul>
+                    <li><strong>No Estate Tax:</strong> Florida has no state estate tax (NY estate tax applies to estates over $6.94M in 2025)</li>
+                    <li><strong>Homestead Protection:</strong> Unlimited creditor protection on primary residence (constitutional protection)</li>
+                    <li><strong>Save Our Homes Cap:</strong> Property tax assessment increases limited to 3% annually</li>
+                    <li><strong>No Intangible Personal Property Tax:</strong> No tax on stocks, bonds, or other investments</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: The 5 Factors -->
+        <div class="content-section" id="section2">
+            <div class="section-header">
+                <h2>The Five Domicile Factors</h2>
+                <p>New York auditors evaluate domicile using five primary factors. No single factor is determinative—success requires winning across ALL five categories. Here's how Jonathan and Larissa should approach each one.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. Home</h3>
+                    <p><strong>What NY Examines:</strong> Comparative size, value, and use of all residences you maintain.</p>
+                    <p style="margin-top: 15px;"><strong>Your Strategy:</strong></p>
+                    <ul>
+                        <li>St. Andrews home ($1.7M+) must be your primary residence in every respect</li>
+                        <li><strong>Critical:</strong> Any retained NY property must be smaller, less valuable, and clearly secondary</li>
+                        <li>Ideal: Sell NY property entirely or rent to unrelated third parties for 10+ months</li>
+                        <li>Spend major holidays (Thanksgiving, Christmas, New Year's) in Florida</li>
+                        <li>Host family gatherings at St. Andrews, not NY</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>2. Active Business Involvement</h3>
+                    <p><strong>What NY Examines:</strong> Where you actively manage business operations—often "the most persuasive indicia" of domicile.</p>
+                    <p style="margin-top: 15px;"><strong>Jonathan's Finance Business:</strong></p>
+                    <ul>
+                        <li>Establish a dedicated Florida office (home office + commercial space recommended)</li>
+                        <li>Document that core business decisions are made in Florida</li>
+                        <li>If NY business continues: Structure as passive investment or shift to Florida entity</li>
+                        <li>Use Florida address on all business cards, websites, and marketing materials</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Larissa's Home Healthcare Business:</strong></p>
+                    <ul>
+                        <li>Establish Florida-based home healthcare operations</li>
+                        <li>Register business entity in Florida</li>
+                        <li>If continuing NY operations: Hire NY-based manager to handle day-to-day</li>
+                        <li>Document Florida as primary business location</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>3. Time (Day Counting)</h3>
+                    <p><strong>What NY Examines:</strong> Physical presence patterns. Even spending under 183 days in NY isn't enough—you must spend the MAJORITY of time in Florida.</p>
+                    <p style="margin-top: 15px;"><strong>Critical Rules:</strong></p>
+                    <ul>
+                        <li>ANY part of a day in NY = full NY day (11pm arrival = 1 day)</li>
+                        <li>Target: 200+ days in Florida, under 120 days in NY</li>
+                        <li>Keep contemporaneous records (apps like MONAEO track via GPS)</li>
+                        <li>Retain all boarding passes, hotel receipts, toll records</li>
+                        <li>NY will subpoena E-ZPass, cell tower data, credit card records</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>4. Items "Near and Dear"</h3>
+                    <p><strong>What NY Examines:</strong> Location of sentimental and valuable possessions (the "teddy bear test").</p>
+                    <p style="margin-top: 15px;"><strong>What to Move to Florida:</strong></p>
+                    <ul>
+                        <li>Family heirlooms and photo albums</li>
+                        <li>Art collections and valuable jewelry</li>
+                        <li>Wedding albums, children's baby items</li>
+                        <li>Wine collections, hobby equipment</li>
+                        <li>Pets (update vet records to Florida)</li>
+                        <li>Primary wardrobe and seasonal clothing</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Documentation:</strong> Keep shipping records, insurance policy updates showing Florida location, moving company receipts.</p>
+                </div>
+
+                <div class="card">
+                    <h3>5. Family Connections</h3>
+                    <p><strong>What NY Examines:</strong> Where your spouse lives and where children attend school (if applicable).</p>
+                    <p style="margin-top: 15px;"><strong>For Jonathan & Larissa:</strong></p>
+                    <ul>
+                        <li>Both must establish Florida domicile simultaneously</li>
+                        <li>Spend time together in Florida (not separate travel patterns)</li>
+                        <li>Join Florida-based social organizations as a couple</li>
+                        <li>Document Florida as your shared life center</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Note:</strong> If you have children, enrolling them in Florida schools is one of the strongest domicile indicators. Keeping children in NY schools makes successful domicile change extremely difficult.</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Domicile Factor Weighting (Based on Case Law Analysis)</h3>
+                <canvas id="factorWeightChart"></canvas>
+            </div>
+
+            <div class="warning-box">
+                <h4>The "January 1 Red Flag"</h4>
+                <p>Never claim your domicile change date as January 1. Auditors know no one actually moves on New Year's Day and treat this as evidence of tax-motivated paperwork rather than genuine relocation. Use your actual move date (likely your St. Andrews closing date).</p>
+            </div>
+        </div>
+
+        <!-- Section 4: Action Timeline -->
+        <div class="content-section" id="section3">
+            <div class="section-header">
+                <h2>Your 12-Month Roadmap</h2>
+                <p>Successful domicile changes follow a deliberate sequence. This timeline ensures you complete all critical steps at the right time and build an audit-proof documentation trail.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>NOW - Before Closing</h4>
+                    <p><strong>Priority: Professional Team Assembly</strong></p>
+                    <ul>
+                        <li>Engage SALT (State and Local Tax) attorney with NY-to-FL specialization (Hodgson Russ or Cole Schotz recommended)</li>
+                        <li>Consult Florida estate planning attorney for new wills/trusts</li>
+                        <li>Meet with CPA to plan final NY tax returns and first FL returns</li>
+                        <li>Review business structures with tax advisor (Jonathan's finance business, Larissa's healthcare business)</li>
+                        <li>Begin documenting current NY ties as baseline</li>
+                        <li>Start reducing unnecessary NY connections (memberships, subscriptions)</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Days 1-10: Move-In Week</h4>
+                    <p><strong>Priority: Immediate Legal Establishment</strong></p>
+                    <ul>
+                        <li><strong>Day 1:</strong> Physically move into St. Andrews home (document with photos, receipts)</li>
+                        <li><strong>Day 1-3:</strong> Obtain Florida auto insurance (required before license)</li>
+                        <li><strong>Day 3-7:</strong> Get Florida driver's licenses (both Jonathan and Larissa) and surrender NY licenses</li>
+                        <li><strong>Day 3-7:</strong> Register to vote in Florida at same DMV visit</li>
+                        <li><strong>Day 5-10:</strong> Register all vehicles in Florida and return NY plates</li>
+                        <li><strong>Day 7-10:</strong> File Declaration of Domicile with Palm Beach County Clerk (205 N. Dixie Hwy, West Palm Beach)</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Days 11-30: Foundation Building</h4>
+                    <p><strong>Priority: Financial and Professional Nexus</strong></p>
+                    <ul>
+                        <li>Open Florida bank accounts (primary checking, savings, business accounts)</li>
+                        <li>Transfer brokerage accounts to Florida addresses</li>
+                        <li>Update Social Security Administration with Florida address</li>
+                        <li>File USPS permanent change of address</li>
+                        <li>Update IRS address using Form 8822 (critical!)</li>
+                        <li>Establish relationships with Florida physicians, dentists</li>
+                        <li>If pets: Transfer to Florida veterinarian</li>
+                        <li>Join St. Andrews Country Club activities and committees</li>
+                        <li><strong>For Jonathan:</strong> Lease commercial office space in Boca Raton (Park at Broken Sound area)</li>
+                        <li><strong>For Larissa:</strong> Register FL home healthcare entity with state</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Days 31-60: Documentation Phase</h4>
+                    <p><strong>Priority: Legal Document Restructuring</strong></p>
+                    <ul>
+                        <li>Execute new Florida wills (critical: FL doesn't recognize holographic wills)</li>
+                        <li>Create/update Florida-based trusts and estate planning documents</li>
+                        <li>Update power of attorney and healthcare directives under FL law</li>
+                        <li>Update all insurance policies to Florida address (life, umbrella, professional liability)</li>
+                        <li>Update professional licenses and credentials to Florida</li>
+                        <li>Close or minimize NY safe deposit boxes; open Florida box</li>
+                        <li>Move valuable items, heirlooms, and art to Florida (document with photos, shipping records)</li>
+                        <li>Update all credit cards, memberships, and subscriptions to Florida address</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>By March 1 (Year 1)</h4>
+                    <p><strong>Priority: Homestead Exemption Filing</strong></p>
+                    <ul>
+                        <li>File for Florida Homestead Exemption with Palm Beach County Property Appraiser</li>
+                        <li>Required: Florida driver's license and proof of permanent residence</li>
+                        <li>Deadline: March 1 (or first business day after if weekend)</li>
+                        <li>Late filing possible through mid-September with $15 fee, but early filing recommended</li>
+                        <li><strong>Benefits:</strong> Property tax savings + Save Our Homes cap + unlimited creditor protection</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Months 3-12: Pattern Establishment</h4>
+                    <p><strong>Priority: Building Lifestyle Evidence</strong></p>
+                    <ul>
+                        <li>Spend 200+ days in Florida (track meticulously)</li>
+                        <li>Limit NY presence to under 120 days (ideally under 100)</li>
+                        <li>Celebrate major holidays in Florida (Thanksgiving, Christmas, birthdays)</li>
+                        <li>Join Florida religious, charitable, and social organizations</li>
+                        <li>Make major purchases in Florida (furniture, cars, jewelry—keep receipts)</li>
+                        <li>Use Florida doctors, dentists, and professional services exclusively</li>
+                        <li>Document all FL business activities (Jonathan's office use, Larissa's FL clients)</li>
+                        <li>If retained NY property: Rent to third party or sell entirely</li>
+                        <li>Cancel or convert to "non-resident" all NY club memberships</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>April 15 (Following Year)</h4>
+                    <p><strong>Priority: Tax Filing Precision</strong></p>
+                    <ul>
+                        <li>File NY part-year resident return (showing domicile change date)</li>
+                        <li>File first Florida resident return (FL has no income tax, but federal address crucial)</li>
+                        <li>Ensure federal return shows Florida address</li>
+                        <li>Report only NY-source income on NY nonresident return going forward</li>
+                        <li>Work with SALT attorney to prepare "pre-audit package" documentation</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Years 2-3: Consistency and Documentation</h4>
+                    <p><strong>Priority: Maintaining Audit Defense</strong></p>
+                    <ul>
+                        <li>Continue day-count tracking (NY looks for 2-3 years of consistent FL behavior)</li>
+                        <li>Maintain 200+ days in Florida annually</li>
+                        <li>Keep all documentation for 7-10 years (credit cards, travel, receipts)</li>
+                        <li>Annual review with SALT attorney to ensure compliance</li>
+                        <li>Deepen Florida community ties and professional relationships</li>
+                        <li>Document business operations from Florida locations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <h3 style="margin-bottom: 30px; color: #1a3e5c;">First 30 Days Checklist</h3>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Obtain Florida auto insurance (both vehicles)</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Get Florida driver's licenses (Jonathan & Larissa) and surrender NY licenses</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Register to vote in Florida and cancel NY voter registration</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Register all vehicles in Florida and return NY plates</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>File Declaration of Domicile with Palm Beach County Clerk</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Open Florida bank accounts and begin primary use</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Update address with IRS (Form 8822) and Social Security Administration</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>File USPS permanent change of address</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Establish FL physicians and dentists (both Jonathan & Larissa)</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Jonathan: Lease commercial office space in Boca Raton</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Larissa: Register FL home healthcare business entity</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Join St. Andrews Country Club activities and introduce yourselves to neighbors</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Begin day-count tracking system (MONAEO app or detailed calendar)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Business Considerations -->
+        <div class="content-section" id="section4">
+            <div class="section-header">
+                <h2>Business Strategy for Jonathan & Larissa</h2>
+                <p>How you structure and operate your businesses directly impacts both your domicile determination and ongoing tax exposure. Here's the strategic approach for each of your business situations.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0;">
+                <div style="border-left: 4px solid #00a8e1; padding-left: 30px;">
+                    <h3 style="color: #1a3e5c; font-size: 24px; margin-bottom: 20px;">Jonathan's Finance Business</h3>
+
+                    <div class="warning-box" style="margin-top: 20px;">
+                        <h4>The "Active Business Involvement" Challenge</h4>
+                        <p>If you continue actively managing a NY-based finance business, NY auditors will argue you remain NY-domiciled regardless of where you sleep. This factor is often considered "the most persuasive indicia" of domicile.</p>
+                    </div>
+
+                    <h4 style="color: #1a3e5c; margin: 30px 0 15px 0;">Recommended Strategies:</h4>
+
+                    <div class="card">
+                        <h3>Option 1: Full Florida Operations (Strongest)</h3>
+                        <ul>
+                            <li>Form new Florida entity (LLC or S-Corp)</li>
+                            <li>Lease dedicated commercial office space in Boca Raton (NOT just home office)</li>
+                            <li>Establish Florida phone line and business address</li>
+                            <li>Conduct all client meetings from Florida office (via video if needed)</li>
+                            <li>Document that investment decisions are made in Florida</li>
+                            <li>Update all marketing materials, website, business cards to show FL address</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Option 2: Convert NY Entity to Passive (Safer)</h3>
+                        <ul>
+                            <li>Hire NY-based manager to handle active operations</li>
+                            <li>Convert your role to passive investor/board member</li>
+                            <li>Establish separate Florida entity for new business</li>
+                            <li>Document clear separation between passive NY income and active FL work</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box" style="margin-top: 20px;">
+                        <h4>Key Advantage for Finance Professionals</h4>
+                        <p>Under Tax Law §631(d), trading securities or commodities <strong>for your own account</strong> does NOT create NY source income—even if you previously lived in NY. This is crucial protection for investment management activities.</p>
+                    </div>
+
+                    <h4 style="color: #1a3e5c; margin: 30px 0 15px 0;">Office Space Strategy:</h4>
+                    <p>St. Andrews homes typically include office space suitable for home-based work, BUT you should also maintain commercial office space to strengthen your business nexus claim:</p>
+
+                    <table style="font-size: 14px;">
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Type</th>
+                                <th>Est. Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Regus - Park at Broken Sound</td>
+                                <td>Private Office</td>
+                                <td>$325-800/mo</td>
+                            </tr>
+                            <tr>
+                                <td>Quest - 1200 N Federal</td>
+                                <td>Dedicated Desk</td>
+                                <td>$399-600/mo</td>
+                            </tr>
+                            <tr>
+                                <td>Venture X - Palmetto Park</td>
+                                <td>Private Office</td>
+                                <td>$900-1,500/mo</td>
+                            </tr>
+                            <tr>
+                                <td>Office Evolution - West Boca</td>
+                                <td>Dedicated Office</td>
+                                <td>$999-1,800/mo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p style="margin-top: 20px; color: #666; line-height: 1.8;"><strong>Recommendation:</strong> Use BOTH home office at St. Andrews (for focused work) AND commercial space (for client meetings, professional presence). This dual-location approach strengthens your FL business nexus while leveraging St. Andrews amenities.</p>
+                </div>
+
+                <div style="border-left: 4px solid #00a8e1; padding-left: 30px;">
+                    <h3 style="color: #1a3e5c; font-size: 24px; margin-bottom: 20px;">Larissa's Home Healthcare Business</h3>
+
+                    <div class="warning-box" style="margin-top: 20px;">
+                        <h4>The Multi-State Business Challenge</h4>
+                        <p>Running a home healthcare business with employees in NY while establishing FL domicile requires careful structuring to avoid NY claiming you're still actively managing NY operations.</p>
+                    </div>
+
+                    <h4 style="color: #1a3e5c; margin: 30px 0 15px 0;">Recommended Strategies:</h4>
+
+                    <div class="card">
+                        <h3>Option 1: Dual-Entity Structure (Cleanest)</h3>
+                        <ul>
+                            <li>Form new Florida home healthcare entity</li>
+                            <li>Register with Florida Agency for Health Care Administration</li>
+                            <li>Recruit Florida-based home health aides</li>
+                            <li>Hire NY-based manager to oversee NY operations</li>
+                            <li>Document that you actively manage FL operations, passively receive NY distributions</li>
+                            <li>Separate bank accounts, payroll systems, and compliance for each state</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Option 2: Full NY Exit Strategy (Strongest for Domicile)</h3>
+                        <ul>
+                            <li>Sell or transfer NY operations to manager/employee</li>
+                            <li>Retain only passive ownership interest in NY entity</li>
+                            <li>Build new FL home healthcare business from scratch</li>
+                            <li>Document complete operational separation</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Florida Healthcare Licensing Requirements</h3>
+                        <p>To operate a home health agency in Florida, you'll need:</p>
+                        <ul>
+                            <li>License from FL Agency for Health Care Administration (AHCA)</li>
+                            <li>Separate licenses for different service types (nursing, therapy, aide services)</li>
+                            <li>Administrator must meet FL qualifications</li>
+                            <li>Surety bond and liability insurance</li>
+                            <li>Application processing: 90-120 days typically</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Action:</strong> Begin FL licensing process immediately to demonstrate commitment to FL operations.</p>
+                    </div>
+
+                    <h4 style="color: #1a3e5c; margin: 30px 0 15px 0;">Palm Beach County Market Opportunity:</h4>
+                    <p style="color: #666; line-height: 1.8;">Palm Beach County has significant demand for home healthcare services:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px; color: #666;">
+                        <li>Median age: 45.3 years (higher than FL average of 42.5)</li>
+                        <li>Large retiree population in communities like St. Andrews, Broken Sound, etc.</li>
+                        <li>High-net-worth individuals seeking premium home care</li>
+                        <li>Growing demand post-COVID for in-home vs. facility care</li>
+                    </ul>
+
+                    <div class="success-box" style="margin-top: 20px;">
+                        <h4>Strategic Advantage</h4>
+                        <p>Starting FL home healthcare operations STRENGTHENS your domicile case by demonstrating you're building a new professional life in Florida, not just moving tax addresses. This active business involvement in FL directly counters any claims you're still NY-domiciled.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>The "Convenience of the Employer" Trap</h4>
+                <p><strong>Critical for Jonathan if W-2 employee:</strong> If you work remotely for a NY-based employer, NY's "Convenience of the Employer" rule may still tax your wages even as a FL resident. The rule states that remote work performed for your own "convenience" (rather than employer's "necessity") remains NY-source income.</p>
+                <p style="margin-top: 15px;"><strong>Good news:</strong> This rule does NOT apply to self-employed individuals. If you're operating your own finance business (not employed by a NY firm), your income sourcing follows where you physically work.</p>
+                <p style="margin-top: 15px;"><strong>Recent case (Zelinsky, May 2025):</strong> Upheld COTE rule even for remote workers. If you're an employee of NY firm, consider converting to independent contractor or consultant structure.</p>
+            </div>
+
+            <div class="chart-container">
+                <h3>Business Income Sourcing: NY vs. FL Scenarios</h3>
+                <canvas id="incomeSourceChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Section 6: Audit Defense -->
+        <div class="content-section" id="section5">
+            <div class="section-header">
+                <h2>Building Your Audit Defense</h2>
+                <p>New York's residency auditors are sophisticated, aggressive, and well-resourced. They will examine your life in forensic detail. Here's how to build an ironclad defense before they ever contact you.</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>Audit Likelihood for Jonathan & Larissa</h4>
+                <p>As high-income earners (combined income likely $1M+) claiming a domicile change, you face <strong>near-certain audit scrutiny</strong>. The NYS Department of Taxation has 300+ auditors focused solely on residency cases, and they generated over $3 billion from audits in 2022-2023.</p>
+                <p style="margin-top: 15px;">Audits typically occur 2-4 years after the claimed domicile change date. The statute of limitations is normally 3 years but extends to 6 years if understatement exceeds 25% of gross income, and eliminates entirely for fraud.</p>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 40px 0 20px 0; font-size: 28px;">What NY Auditors Will Subpoena</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Source</th>
+                        <th>What They're Looking For</th>
+                        <th>Your Defense Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cell Phone Records</strong></td>
+                        <td>Cell tower pings showing physical location daily</td>
+                        <td>Ensure phone use predominantly in FL area codes and towers. Consider FL phone number.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>E-ZPass / SunPass</strong></td>
+                        <td>Bridge/tunnel crossings with timestamps (NY E-ZPass reveals frequent NY visits)</td>
+                        <td>Use SunPass in FL, minimize E-ZPass use. Document every NY trip purpose (medical, family emergency only).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Credit/Debit Cards</strong></td>
+                        <td>Transaction locations revealing daily activity patterns</td>
+                        <td>Primary spending must be in FL (groceries, gas, restaurants, shopping). Keep receipts.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gym/Club Swipe Cards</strong></td>
+                        <td>Access logs showing which location you used more frequently</td>
+                        <td>Use St. Andrews facilities regularly. Cancel/convert NY gym to guest status only.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flight Records</strong></td>
+                        <td>Airline manifests showing travel patterns between NY and FL</td>
+                        <td>Keep all boarding passes. Document that FL is home base (more flights TO FL than FROM FL).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medical/Dental Records</strong></td>
+                        <td>Where you receive ongoing care (primary doctor = primary home)</td>
+                        <td>Establish FL physicians immediately. If NY specialist needed, document as infrequent/specialized only.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Veterinary Records</strong></td>
+                        <td>Pet care location (auditors literally check dog's vet)</td>
+                        <td>Transfer pet records to FL vet within first 30 days. Annual checkups in FL only.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Utility Bills</strong></td>
+                        <td>Usage patterns at each residence (electric, water, gas, internet)</td>
+                        <td>FL home should show significantly higher usage. If retaining NY property, usage should be minimal.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Social Media</strong></td>
+                        <td>Location tags, check-ins, photos revealing where you spend time</td>
+                        <td>Post from FL locations. Tag St. Andrews, local FL restaurants, beaches. Be cautious with NY posts.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Professional Records</strong></td>
+                        <td>Where business meetings occur, office locations used</td>
+                        <td>Jonathan's office lease and usage logs. Larissa's FL business operations. Document FL work locations.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">The Day-Count System</h3>
+
+            <p style="color: #666; line-height: 1.8; margin-bottom: 30px;">Meticulous day counting is non-negotiable. NY presumes any undocumented day is a NY day. Here's your tracking system:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Recommended Tracking Tools</h3>
+                    <ul>
+                        <li><strong>MONAEO App:</strong> GPS-based location tracking with automatic day counting and audit-ready reports ($200-500/year)</li>
+                        <li><strong>TrackingStates App:</strong> Similar GPS tracking with cloud backup</li>
+                        <li><strong>Detailed Calendar:</strong> Google Calendar with daily location entries (free backup method)</li>
+                        <li><strong>Spreadsheet Log:</strong> Manual tracking with supporting documentation links</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Recommendation:</strong> Use automated app AS PRIMARY + manual calendar as backup.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Supporting Documentation to Retain (7-10 Years)</h3>
+                    <ul>
+                        <li>All boarding passes and flight confirmations</li>
+                        <li>Hotel receipts (if traveling)</li>
+                        <li>Credit card statements (all cards, all months)</li>
+                        <li>E-ZPass/SunPass statements</li>
+                        <li>Toll receipts (if paying cash)</li>
+                        <li>Restaurant receipts showing location</li>
+                        <li>Gas station receipts with timestamps</li>
+                        <li>Calendar entries with notes on activities</li>
+                        <li>Photos with EXIF location data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="calculator">
+                <h3>Day Count Target Calculator</h3>
+                <p style="margin-bottom: 30px; color: #666;">Calculate your safe harbor day counts:</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div>
+                        <div class="calc-input-group">
+                            <label>Days Planned in Florida</label>
+                            <input type="number" id="flDays" value="220" max="365" oninput="calculateDays()">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="calc-input-group">
+                            <label>Days Planned in New York</label>
+                            <input type="number" id="nyDays" value="100" max="365" oninput="calculateDays()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-result" id="dayResult">
+                    <h4>Assessment</h4>
+                    <p id="dayAssessment"></p>
+                    <p style="margin-top: 20px; font-size: 14px; color: #666;"><strong>Remaining days for other locations:</strong> <span id="otherDays"></span></p>
+                </div>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Failed Audit: Financial Consequences</h3>
+
+            <p style="color: #666; line-height: 1.8; margin-bottom: 30px;">Understanding the stakes helps prioritize your compliance efforts:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Back Taxes (3 years)</th>
+                        <th>Interest (9.5% current rate)</th>
+                        <th>Penalties</th>
+                        <th>Total Exposure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$1M earner, negligence penalty</td>
+                        <td>$195,000</td>
+                        <td>$30,000-50,000</td>
+                        <td>$25,000+</td>
+                        <td><strong>$250,000-$300,000</strong></td>
+                    </tr>
+                    <tr>
+                        <td>$1M earner, fraud finding</td>
+                        <td>$195,000</td>
+                        <td>$30,000-50,000</td>
+                        <td>$390,000 (200%)</td>
+                        <td><strong>$615,000-$635,000</strong></td>
+                    </tr>
+                    <tr>
+                        <td>$2M earner, negligence penalty</td>
+                        <td>$420,000</td>
+                        <td>$65,000-95,000</td>
+                        <td>$52,000+</td>
+                        <td><strong>$537,000-$567,000</strong></td>
+                    </tr>
+                    <tr>
+                        <td>$2M earner, fraud finding</td>
+                        <td>$420,000</td>
+                        <td>$65,000-95,000</td>
+                        <td>$840,000 (200%)</td>
+                        <td><strong>$1,325,000-$1,355,000</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <h4>Fraud vs. Negligence: The Critical Distinction</h4>
+                <p><strong>Negligence:</strong> 5% penalty + 50% of interest. Typically applied when taxpayer made "reasonable effort" but failed to meet burden of proof.</p>
+                <p style="margin-top: 15px;"><strong>Fraud:</strong> 200% penalty + interest + no statute of limitations. Applied when taxpayer knowingly filed false returns or concealed information.</p>
+                <p style="margin-top: 15px;"><strong>What triggers fraud findings:</strong> Destroying documents, false statements under oath, maintaining secret NY residence, backdating documents, falsifying day counts.</p>
+                <p style="margin-top: 15px;"><strong>Your protection:</strong> Contemporaneous, honest documentation. Working with SALT attorney demonstrates good faith effort.</p>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Pre-Audit Package Strategy</h3>
+
+            <p style="color: #666; line-height: 1.8; margin-bottom: 30px;">Work with your SALT attorney to prepare a comprehensive "pre-audit package" that you can present immediately if/when audited. This demonstrates preparation and often shortens audit duration:</p>
+
+            <div class="card">
+                <h3>Pre-Audit Package Contents</h3>
+                <ul>
+                    <li><strong>Narrative Statement:</strong> Detailed explanation of why you moved (lifestyle, family, business opportunities—NOT taxes)</li>
+                    <li><strong>Timeline Documentation:</strong> Every step taken to establish FL domicile with dates and supporting documents</li>
+                    <li><strong>Day-Count Log:</strong> Complete calendar for all years in question with supporting evidence</li>
+                    <li><strong>Home Comparison:</strong> Size, value, utility analysis showing FL home as primary</li>
+                    <li><strong>Financial Records:</strong> Bank statements, credit cards showing FL activity predominance</li>
+                    <li><strong>Professional Ties:</strong> FL doctor/dentist records, business lease, FL client lists</li>
+                    <li><strong>Social Integration:</strong> St. Andrews membership, charitable giving, club participation</li>
+                    <li><strong>Items Near and Dear:</strong> Moving records, insurance updates, photos of possessions in FL home</li>
+                    <li><strong>Legal Documents:</strong> FL wills, trusts, voter registration, driver's license, homestead exemption</li>
+                </ul>
+                <p style="margin-top: 20px; color: #666;">Having this package ready signals to auditors that you took the change seriously and maintained thorough records—often leading to more favorable outcomes.</p>
+            </div>
+
+            <div class="chart-container">
+                <h3>Audit Timeline: What to Expect</h3>
+                <canvas id="auditTimelineChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Section 7: St. Andrews -->
+        <div class="content-section" id="section6">
+            <div class="section-header">
+                <h2>St. Andrews Country Club Analysis</h2>
+                <p>St. Andrews represents one of South Florida's most prestigious private country club communities. Understanding the financial structure, amenities, and market dynamics is essential for Jonathan and Larissa's decision-making.</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>Budget Reality Check</h4>
+                <p>The $1.7M budget presents a significant challenge due to St. Andrews' mandatory membership structure. Let's break down the true financial picture:</p>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 40px 0 20px 0; font-size: 28px;">Complete Cost Analysis</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #fff3e0;">
+                        <td><strong>Full Golf Membership</strong></td>
+                        <td><strong>$400,000</strong></td>
+                        <td>Non-refundable</td>
+                        <td>Mandatory for all residents</td>
+                    </tr>
+                    <tr style="background: #fff3e0;">
+                        <td><strong>POA Owners Contribution</strong></td>
+                        <td><strong>$25,000</strong></td>
+                        <td>One-time</td>
+                        <td>Due at closing</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="background: #1a3e5c; color: white; font-weight: 600;">TOTAL UPFRONT FEES: $425,000</td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Annual Membership Dues</strong></td>
+                        <td><strong>$44,190</strong></td>
+                        <td>Yearly</td>
+                        <td>Plus 7% sales tax = $47,283</td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Annual Special Assessment</strong></td>
+                        <td><strong>$6,000</strong></td>
+                        <td>Yearly</td>
+                        <td>Debt repayment fund</td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Annual POA Assessments</strong></td>
+                        <td><strong>$8,484</strong></td>
+                        <td>Yearly</td>
+                        <td>General ($7,884) + Special ($600)</td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Holiday Fund</strong></td>
+                        <td><strong>$250</strong></td>
+                        <td>Yearly</td>
+                        <td>Mandatory staff gratuity</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="background: #00a8e1; color: white; font-weight: 600;">TOTAL ANNUAL DUES: $59,207</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <h3>Budget Allocation: $1.7M Total Budget</h3>
+                <canvas id="budgetChart"></canvas>
+            </div>
+
+            <div class="calculator">
+                <h3>St. Andrews Affordability Calculator</h3>
+                <p style="margin-bottom: 30px; color: #666;">Calculate your true purchasing power at St. Andrews:</p>
+
+                <div class="calc-input-group">
+                    <label>Total Budget Available</label>
+                    <input type="number" id="totalBudget" value="1700000" step="50000" oninput="calculateBudget()">
+                </div>
+
+                <div class="calc-result" id="budgetResult">
+                    <h4>Your St. Andrews Purchasing Power</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 20px 0;">
+                        <div>
+                            <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Entry Fees (Membership + POA)</p>
+                            <p style="font-size: 32px; font-weight: 300; color: #1a3e5c;">$425,000</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Net Funds for Home Purchase</p>
+                            <p style="font-size: 32px; font-weight: 300; color: #00a8e1;" id="netPurchase">$0</p>
+                        </div>
+                    </div>
+                    <p id="budgetAssessment" style="margin-top: 20px; padding: 20px; background: #f4f4f4; border-radius: 4px;"></p>
+                </div>
+
+                <div style="margin-top: 30px; padding: 30px; background: white; border: 2px solid #e8e8e8; border-radius: 4px;">
+                    <h4 style="color: #1a3e5c; margin-bottom: 20px;">First-Year Total Cash Requirement</h4>
+                    <p style="color: #666; line-height: 1.8;">Beyond the home purchase and entry fees, budget for first-year carrying costs:</p>
+                    <ul style="margin: 20px 0; padding-left: 20px; color: #666;">
+                        <li>Annual dues and assessments: <strong>$59,207</strong></li>
+                        <li>Property taxes (est. $1.3M home): <strong>~$15,000-18,000</strong> (first year, before homestead)</li>
+                        <li>Property insurance: <strong>~$8,000-12,000</strong> (flood + wind + homeowners)</li>
+                        <li>Utilities: <strong>~$6,000-10,000</strong> annually</li>
+                        <li>Maintenance/landscaping: <strong>~$10,000-15,000</strong></li>
+                    </ul>
+                    <p style="margin-top: 20px; color: #1a3e5c; font-weight: 600;">Est. Total First-Year Carrying Costs: $98,000-$114,000</p>
+                </div>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Current Market Analysis</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Entry-Level Market</h3>
+                    <p><strong>Price Range:</strong> $1.5M - $2.5M</p>
+                    <p><strong>Property Type:</strong> "Concierge" section homes, original construction requiring updates</p>
+                    <p><strong>Typical Features:</strong></p>
+                    <ul>
+                        <li>2,600 - 3,500 sq ft</li>
+                        <li>3-4 bedrooms, 2.5-3.5 baths</li>
+                        <li>Dry lots (no water/golf views)</li>
+                        <li>Often 20-30 years old, needing renovation</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #666;"><strong>Reality:</strong> Finding suitable home under $1.5M is extremely rare in current market.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Mid-Range Market</h3>
+                    <p><strong>Price Range:</strong> $2.5M - $5M</p>
+                    <p><strong>Property Type:</strong> Updated smaller estates, golf/water views</p>
+                    <p><strong>Typical Features:</strong></p>
+                    <ul>
+                        <li>3,500 - 5,000 sq ft</li>
+                        <li>4-5 bedrooms, 4-5 baths</li>
+                        <li>Golf course or water views</li>
+                        <li>Recent renovations or modern construction</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Luxury Market</h3>
+                    <p><strong>Price Range:</strong> $5M - $15M+</p>
+                    <p><strong>Property Type:</strong> Grand custom estates</p>
+                    <p><strong>Typical Features:</strong></p>
+                    <ul>
+                        <li>6,000 - 15,000+ sq ft</li>
+                        <li>5-7+ bedrooms, 6-9+ baths</li>
+                        <li>Prime golf/water locations</li>
+                        <li>Custom finishes, resort-style amenities</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Community Average:</strong> ~$7M</p>
+                </div>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Amenities & Lifestyle</h3>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0;">
+                <div class="card">
+                    <h3>Golf & Recreation</h3>
+                    <ul>
+                        <li><strong>36 Holes:</strong> Tom Fazio II and Arnold Palmer designs</li>
+                        <li><strong>Golf Performance Center:</strong> Indoor bays, V1 Digital Coaching, FlightScope tech</li>
+                        <li><strong>Practice Facilities:</strong> Driving range, short game area, putting greens</li>
+                        <li><strong>Pro Shop:</strong> Full-service with premium brands</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Tennis & Racquet Sports</h3>
+                    <ul>
+                        <li><strong>15 Har-Tru Clay Courts</strong></li>
+                        <li><strong>Exhibition Stadium:</strong> Center court with grandstand seating</li>
+                        <li><strong>Professional Instruction:</strong> USPTA-certified staff</li>
+                        <li><strong>Tournament Play:</strong> Regular member events</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Fitness & Wellness</h3>
+                    <ul>
+                        <li><strong>19,000 sq ft Fitness Center:</strong> State-of-the-art equipment</li>
+                        <li><strong>Personal Training:</strong> Certified trainers on staff</li>
+                        <li><strong>Classes:</strong> Yoga, Pilates, Krav Maga, Tai Chi, spin</li>
+                        <li><strong>Spa & Salon:</strong> Named North America's Best Day Spa 2019</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Dining & Social</h3>
+                    <ul>
+                        <li><strong>125,000 sq ft Clubhouse:</strong> Recently reimagined</li>
+                        <li><strong>7 Dining Venues:</strong> Fine dining to casual</li>
+                        <li><strong>Private Event Spaces:</strong> Weddings, corporate events</li>
+                        <li><strong>Social Calendar:</strong> Wine tastings, concerts, themed events</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>Domicile Advantages of St. Andrews Membership</h4>
+                <p>The mandatory full golf membership actually STRENGTHENS your domicile case:</p>
+                <ul style="margin-top: 15px;">
+                    <li><strong>$400,000 Non-Refundable Investment:</strong> Demonstrates serious financial commitment to Florida life</li>
+                    <li><strong>Social Integration:</strong> Immediate access to clubs, committees, events showing FL community ties</li>
+                    <li><strong>Lifestyle Documentation:</strong> Swipe card records at golf course, tennis center, fitness facility prove daily FL presence</li>
+                    <li><strong>Professional Network:</strong> High-net-worth members = business development opportunities in FL</li>
+                </ul>
+                <p style="margin-top: 15px;">Use this to your advantage: Join committees, participate in tournaments, attend social events. Every swipe of your member card is documentation of FL domicile.</p>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Alternative Communities to Consider</h3>
+
+            <p style="color: #666; line-height: 1.8; margin-bottom: 30px;">If the $1.7M budget constraint is firm, these nearby communities offer similar luxury with more flexible membership options:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Community</th>
+                        <th>Membership Fee</th>
+                        <th>Type</th>
+                        <th>Entry-Level Homes</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Broken Sound</strong></td>
+                        <td>$85,000-$150,000</td>
+                        <td>Optional golf</td>
+                        <td>$600K-$1.2M</td>
+                        <td>Social memberships available, 36 holes, closer to beach</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Boca Pointe</strong></td>
+                        <td>$35,000-$75,000</td>
+                        <td>Flexible tiers</td>
+                        <td>$400K-$900K</td>
+                        <td>Multiple membership levels, family-friendly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Woodfield Country Club</strong></td>
+                        <td>$50,000-$120,000</td>
+                        <td>Golf or social</td>
+                        <td>$500K-$1M</td>
+                        <td>27 holes, more affordable than St. Andrews</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Addison Reserve</strong></td>
+                        <td>$150,000-$250,000</td>
+                        <td>Mandatory golf</td>
+                        <td>$1.2M-$2.5M</td>
+                        <td>Similar prestige, slightly lower fees than St. Andrews</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <h4>Recommendation for Jonathan & Larissa</h4>
+                <p><strong>If budget is firm at $1.7M total:</strong> St. Andrews will be challenging. You'd have only $1.275M for home purchase, which puts you at the absolute bottom of the market with limited inventory and likely extensive renovation needs.</p>
+                <p style="margin-top: 15px;"><strong>If you can increase to $2.5M total:</strong> St. Andrews becomes viable with $2.075M for home purchase, accessing updated smaller estates in the "concierge" section with golf/water views.</p>
+                <p style="margin-top: 15px;"><strong>Alternative strategy:</strong> Consider Broken Sound or similar community for first 2-3 years to establish FL domicile, then trade up to St. Andrews once domicile is secure and budget allows. This spreads the $400K membership fee over time while still achieving your domicile objectives.</p>
+            </div>
+        </div>
+
+        <!-- Section 8: Professional Team -->
+        <div class="content-section" id="section7">
+            <div class="section-header">
+                <h2>Building Your Professional Team</h2>
+                <p>Successfully changing domicile from New York to Florida requires specialized professional guidance. This is NOT a DIY project. Here's how to assemble the right team and what to expect in terms of investment.</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>Why Professional Guidance is Non-Negotiable</h4>
+                <p>The potential cost of a failed domicile change far exceeds the cost of proper planning. For a $1M+ earner, three years of back taxes, interest, and penalties can exceed $300,000-$600,000. Professional fees of $20,000-$50,000 represent less than one year's tax savings and provide insurance against catastrophic audit failures.</p>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 40px 0 20px 0; font-size: 28px;">Essential Team Members</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. SALT Attorney (Highest Priority)</h3>
+                    <p><strong>Role:</strong> State And Local Tax specialist focusing on domicile changes</p>
+                    <p><strong>Why First:</strong> Attorney-client privilege protects your planning discussions from discovery in audit</p>
+                    <p><strong>Services Provided:</strong></p>
+                    <ul>
+                        <li>Comprehensive domicile planning strategy</li>
+                        <li>Business restructuring advice</li>
+                        <li>Document review and creation</li>
+                        <li>Pre-audit package preparation</li>
+                        <li>Audit defense representation</li>
+                        <li>Appeals and litigation if needed</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Engagement Timing:</strong> 6-12 months BEFORE move</p>
+                </div>
+
+                <div class="card">
+                    <h3>2. Florida Estate Planning Attorney</h3>
+                    <p><strong>Role:</strong> Restructure legal documents under FL law</p>
+                    <p><strong>Critical Services:</strong></p>
+                    <ul>
+                        <li>Draft new Florida wills (FL doesn't recognize holographic wills)</li>
+                        <li>Re-situs trusts to Florida jurisdiction</li>
+                        <li>Update power of attorney documents</li>
+                        <li>Healthcare directives and living wills</li>
+                        <li>Review homestead protection strategies</li>
+                        <li>Asset protection planning (FL has strong creditor protections)</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Engagement Timing:</strong> Within first 60 days of move</p>
+                </div>
+
+                <div class="card">
+                    <h3>3. Multi-State CPA</h3>
+                    <p><strong>Role:</strong> Tax compliance and planning across jurisdictions</p>
+                    <p><strong>Services Provided:</strong></p>
+                    <ul>
+                        <li>Final NY resident tax return preparation</li>
+                        <li>Part-year resident return strategy</li>
+                        <li>Ongoing FL resident returns (federal + any NY source income)</li>
+                        <li>Business income allocation guidance</li>
+                        <li>Quarterly estimated tax planning</li>
+                        <li>Pass-through entity tax (PTET) optimization</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Note:</strong> CPA communications NOT privileged—sensitive planning should be through SALT attorney</p>
+                </div>
+
+                <div class="card">
+                    <h3>4. Florida Business Attorney (For Larissa)</h3>
+                    <p><strong>Role:</strong> Healthcare business licensing and compliance</p>
+                    <p><strong>Services Provided:</strong></p>
+                    <ul>
+                        <li>FL home healthcare agency licensing (AHCA)</li>
+                        <li>Entity formation (FL LLC/Corp)</li>
+                        <li>Employment law compliance</li>
+                        <li>Healthcare regulations and Medicare/Medicaid enrollment</li>
+                        <li>Contracts and business agreements</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Engagement Timing:</strong> Immediately (licensing takes 90-120 days)</p>
+                </div>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Recommended SALT Attorney Firms</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Firm</th>
+                        <th>Specialization</th>
+                        <th>Track Record</th>
+                        <th>Locations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Hodgson Russ LLP</strong></td>
+                        <td>NY residency audits</td>
+                        <td>10,000+ residency audits handled; won landmark Gaied case</td>
+                        <td>Buffalo, Albany, NYC, Boca Raton, Toronto</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cole Schotz</strong></td>
+                        <td>"Snowbird Counsel" practice</td>
+                        <td>Dedicated NY-to-FL domicile team; publishes "On the Road to Florida" guide</td>
+                        <td>NJ, NY, FL (multiple offices)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Holland & Knight</strong></td>
+                        <td>National SALT practice</td>
+                        <td>Large FL presence, sophisticated multi-state tax planning</td>
+                        <td>28 US offices including West Palm Beach, Miami, Tampa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Blank Rome LLP</strong></td>
+                        <td>NY/FL residency transitions</td>
+                        <td>Strong NY and FL offices, financial services expertise (good for Jonathan)</td>
+                        <td>NYC, Boca Raton, plus 14 other offices</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Professional Fee Investment</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Typical Cost Range</th>
+                        <th>Timing</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SALT Attorney - Initial Consultation</strong></td>
+                        <td>$500-$2,500</td>
+                        <td>Pre-move</td>
+                        <td>1-2 hour assessment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SALT Attorney - Comprehensive Planning</strong></td>
+                        <td>$5,000-$25,000</td>
+                        <td>Pre-move to Year 1</td>
+                        <td>Full domicile strategy, document review, business restructuring</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SALT Attorney - Annual Compliance Review</strong></td>
+                        <td>$5,000-$15,000</td>
+                        <td>Years 1-3</td>
+                        <td>Ongoing monitoring, pre-audit package updates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SALT Attorney - Audit Defense</strong></td>
+                        <td>$15,000-$50,000+</td>
+                        <td>If/when audited</td>
+                        <td>Full representation through audit process</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SALT Attorney - Appeals/Litigation</strong></td>
+                        <td>$25,000-$100,000+</td>
+                        <td>If audit unfavorable</td>
+                        <td>Administrative appeals, Tax Appeals Tribunal, court</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FL Estate Planning Attorney</strong></td>
+                        <td>$3,000-$10,000</td>
+                        <td>First 60 days</td>
+                        <td>Wills, trusts, POA, healthcare directives</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multi-State CPA - Initial Year</strong></td>
+                        <td>$5,000-$15,000</td>
+                        <td>Year 1</td>
+                        <td>Part-year returns, business allocation, quarterly planning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multi-State CPA - Ongoing</strong></td>
+                        <td>$3,000-$10,000/year</td>
+                        <td>Years 2+</td>
+                        <td>Annual returns, quarterly estimates, consulting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FL Business Attorney (Larissa)</strong></td>
+                        <td>$5,000-$15,000</td>
+                        <td>Pre-move to licensing</td>
+                        <td>AHCA licensing, entity formation, contracts</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="calculator">
+                <h3>Professional Fee ROI Calculator</h3>
+                <p style="margin-bottom: 30px; color: #666;">Compare professional fees to your tax savings:</p>
+
+                <div class="calc-result">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin: 30px 0;">
+                        <div>
+                            <h4 style="font-size: 16px; color: #666; margin-bottom: 10px;">Est. Professional Fees (Year 1)</h4>
+                            <p style="font-size: 36px; font-weight: 300; color: #1a3e5c;">$25,000-$50,000</p>
+                            <p style="font-size: 12px; color: #666; margin-top: 10px;">SALT attorney + estate + CPA + business attorney</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 16px; color: #666; margin-bottom: 10px;">Your Annual Tax Savings</h4>
+                            <p style="font-size: 36px; font-weight: 300; color: #00a8e1;">$117,000+</p>
+                            <p style="font-size: 12px; color: #666; margin-top: 10px;">Based on $1M combined income</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 16px; color: #666; margin-bottom: 10px;">Fees as % of Savings</h4>
+                            <p style="font-size: 36px; font-weight: 300; color: #4caf50;">21-43%</p>
+                            <p style="font-size: 12px; color: #666; margin-top: 10px;">Recovered in first year alone</p>
+                        </div>
+                    </div>
+                    <p style="padding: 30px; background: #e8f5e9; border-radius: 4px; line-height: 1.8; color: #666;">
+                        <strong style="color: #2e7d32;">The Investment Perspective:</strong> Spending $25,000-$50,000 on professional guidance in Year 1 represents 21-43% of your first year's tax savings. Over 10 years, those professional fees represent less than 5% of your total tax savings ($1,170,000+). More importantly, proper planning dramatically reduces your audit risk and potential $300,000-$600,000 exposure from a failed domicile claim.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="color: #1a3e5c; margin: 60px 0 20px 0; font-size: 28px;">Questions to Ask Prospective Attorneys</h3>
+
+            <div class="card">
+                <h3>SALT Attorney Interview Questions</h3>
+                <ul>
+                    <li>"How many NY-to-FL domicile changes have you handled in the past 5 years?"</li>
+                    <li>"What percentage of your domicile clients have been audited, and what was the outcome?"</li>
+                    <li>"Have you handled any cases that went to the Tax Appeals Tribunal or court?"</li>
+                    <li>"Do you have experience with finance industry clients?" (For Jonathan)</li>
+                    <li>"How do you structure your fees—hourly, flat fee, or hybrid?"</li>
+                    <li>"Will you personally handle my matter, or will it be delegated to associates?"</li>
+                    <li>"What's your typical timeline for developing a comprehensive domicile plan?"</li>
+                    <li>"Do you prepare pre-audit packages, and what do they include?"</li>
+                    <li>"If I'm audited 3-4 years from now, will you still represent me at the same fee structure?"</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h4>Next Steps for Jonathan & Larissa</h4>
+                <ol style="margin-top: 15px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>Schedule consultations with 2-3 SALT attorneys</strong> (Hodgson Russ and Cole Schotz recommended based on their NY-FL specialization)</li>
+                    <li><strong>Bring this research guide</strong> to your consultations—it demonstrates you've done homework and allows focused discussion</li>
+                    <li><strong>Ask about business restructuring</strong> specifically for Jonathan's finance business and Larissa's home healthcare operations</li>
+                    <li><strong>Request a written engagement proposal</strong> with fee breakdown and scope of services</li>
+                    <li><strong>Engage attorney BEFORE closing</strong> on St. Andrews property so timing and documentation are optimal from day one</li>
+                </ol>
+            </div>
+
+            <div class="warning-box">
+                <h4>Red Flags in Professional Selection</h4>
+                <ul style="margin-top: 15px;">
+                    <li><strong>Avoid:</strong> Generalist attorneys without specific NY residency audit experience</li>
+                    <li><strong>Avoid:</strong> Anyone who guarantees you won't be audited (no one can guarantee this)</li>
+                    <li><strong>Avoid:</strong> Advisors who say "just get a FL license and you're fine" (major red flag—shows ignorance of domicile law)</li>
+                    <li><strong>Avoid:</strong> Using the same attorney for BOTH estate planning AND SALT work (separate specialists for each)</li>
+                    <li><strong>Avoid:</strong> Anyone suggesting backdating documents or falsifying day counts (fraud exposure)</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>This comprehensive guide was curated by Edmund Bogen</strong> through extensive research utilizing multiple authoritative online sources and artificial intelligence platforms. The information presented is for educational and informational purposes only and does not constitute legal, tax, accounting, or financial advice.</p>
+            <p style="margin-top: 20px;">Jonathan and Larissa should engage qualified professional advisors—including SALT attorneys, CPAs, estate planning attorneys, and financial planners—before making any decisions based on this research. Every individual's circumstances are unique, and successful domicile changes require personalized professional guidance.</p>
+            <p style="margin-top: 30px; opacity: 0.8; font-size: 14px;">© 2025 The Edmund Bogen Team at Douglas Elliman Real Estate. Prepared exclusively for Jonathan & Larissa.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Password Protection
+        const PASSWORD = "stAndrews2025"; // You can change this
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMessage');
+
+            if (input === PASSWORD) {
+                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                initCharts();
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        // Allow Enter key to submit password
+        document.getElementById('passwordInput')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Navigation
+        function showSection(index) {
+            const sections = document.querySelectorAll('.content-section');
+            const tabs = document.querySelectorAll('.nav-tab');
+
+            sections.forEach(section => section.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            sections[index].classList.add('active');
+            tabs[index].classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Checklist Toggle
+        function toggleCheck(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('completed');
+        }
+
+        // Tax Savings Calculator
+        function calculateSavings() {
+            const jonathanIncome = parseInt(document.getElementById('jonathanIncome').value) || 0;
+            const larissaIncome = parseInt(document.getElementById('larissaIncome').value) || 0;
+            const totalIncome = jonathanIncome + larissaIncome;
+
+            // NY State + NYC tax (combined top rate ~14.776% for high earners, but marginal - use effective ~11.7% for $1M)
+            const nyTax = totalIncome * 0.117;
+            const flTax = 0;
+            const savings = nyTax - flTax;
+            const tenYear = savings * 10;
+
+            document.getElementById('savingsAmount').textContent = '$' + savings.toLocaleString();
+            document.getElementById('savingsBreakdown').innerHTML = `
+                <strong>NY State + NYC Tax:</strong> $${nyTax.toLocaleString()}<br>
+                <strong>Florida Tax:</strong> $0<br>
+                <strong>Annual Savings:</strong> $${savings.toLocaleString()}
+            `;
+            document.getElementById('tenYearSavings').textContent = '$' + tenYear.toLocaleString();
+        }
+
+        // Day Count Calculator
+        function calculateDays() {
+            const flDays = parseInt(document.getElementById('flDays').value) || 0;
+            const nyDays = parseInt(document.getElementById('nyDays').value) || 0;
+            const otherDays = 365 - flDays - nyDays;
+
+            let assessment = '';
+            let color = '';
+
+            if (nyDays >= 183) {
+                assessment = '🚨 <strong>DANGER ZONE:</strong> You meet the statutory residency threshold (183+ days in NY). Even with FL domicile, you\'ll be taxed as NY resident on worldwide income. Reduce NY days below 183 immediately.';
+                color = '#d32f2f';
+            } else if (nyDays >= 120) {
+                assessment = '⚠️ <strong>HIGH RISK:</strong> While under 183 days, spending this much time in NY weakens your domicile claim. Auditors look for "significant change in lifestyle pattern." Recommend reducing to under 100 days.';
+                color = '#ff9800';
+            } else if (flDays < 183) {
+                assessment = '⚠️ <strong>MODERATE RISK:</strong> NY days are acceptable, but you\'re not spending majority of time in FL. Increase FL days to 200+ to show FL is truly your primary home.';
+                color = '#ff9800';
+            } else if (flDays >= 200) {
+                assessment = '✅ <strong>STRONG POSITION:</strong> Excellent day count pattern. Spending 200+ days in FL and under 120 in NY demonstrates genuine lifestyle change. Maintain this pattern for 2-3 years.';
+                color = '#4caf50';
+            } else {
+                assessment = '✓ <strong>ACCEPTABLE:</strong> Day count meets minimum requirements, but consider increasing FL days to 200+ for stronger audit defense.';
+                color = '#00a8e1';
+            }
+
+            document.getElementById('dayAssessment').innerHTML = assessment;
+            document.getElementById('dayAssessment').style.color = color;
+            document.getElementById('otherDays').textContent = otherDays + ' days';
+        }
+
+        // Budget Calculator
+        function calculateBudget() {
+            const total = parseInt(document.getElementById('totalBudget').value) || 0;
+            const fees = 425000;
+            const netPurchase = total - fees;
+
+            document.getElementById('netPurchase').textContent = '$' + netPurchase.toLocaleString();
+
+            let assessment = '';
+            if (netPurchase < 1200000) {
+                assessment = '🚨 <strong>Very Challenging:</strong> With only $' + netPurchase.toLocaleString() + ' for home purchase, you\'ll struggle to find suitable inventory at St. Andrews. Entry-level homes typically start around $1.5M. Consider increasing total budget or exploring alternative communities like Broken Sound.';
+            } else if (netPurchase < 1500000) {
+                assessment = '⚠️ <strong>Limited Options:</strong> This budget puts you at the bottom of St. Andrews market. Expect older homes requiring significant renovation, likely no views. Inventory at this price point is very limited.';
+            } else if (netPurchase < 2000000) {
+                assessment = '✓ <strong>Entry-Level Viable:</strong> This budget accesses the "concierge" section and smaller updated homes. You\'ll have reasonable selection, though views and prime locations will be limited.';
+            } else {
+                assessment = '✅ <strong>Strong Position:</strong> This budget provides good access to updated homes with potential golf/water views. You\'ll have solid inventory selection in the $2M-$2.5M range.';
+            }
+
+            document.getElementById('budgetAssessment').innerHTML = assessment;
+        }
+
+        // Initialize all calculations
+        calculateSavings();
+        calculateDays();
+        calculateBudget();
+
+        // Charts
+        function initCharts() {
+            // Chart.js configuration
+            Chart.defaults.font.family = "'Montserrat', 'Lato', sans-serif";
+            Chart.defaults.color = '#666';
+
+            const colors = {
+                navy: '#1a3e5c',
+                blue: '#00a8e1',
+                green: '#4caf50',
+                orange: '#ff9800',
+                red: '#d32f2f',
+                gray: '#999'
+            };
+
+            // Audit Activity Chart
+            new Chart(document.getElementById('auditChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
+                    datasets: [{
+                        label: 'Revenue from Residency Audits (Billions)',
+                        data: [2.1, 2.4, 1.8, 2.6, 3.1, 3.2],
+                        backgroundColor: colors.blue
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'B';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Tax Comparison Chart
+            new Chart(document.getElementById('taxComparisonChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['$500K', '$1M', '$2M', '$5M'],
+                    datasets: [
+                        {
+                            label: 'NY State + NYC Tax',
+                            data: [61500, 117000, 252500, 643500],
+                            backgroundColor: colors.navy
+                        },
+                        {
+                            label: 'Florida Tax',
+                            data: [0, 0, 0, 0],
+                            backgroundColor: colors.green
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + (value/1000) + 'K';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Factor Weight Chart
+            new Chart(document.getElementById('factorWeightChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Active Business (30%)', 'Time/Days (25%)', 'Home (20%)', 'Items Near & Dear (15%)', 'Family (10%)'],
+                    datasets: [{
+                        data: [30, 25, 20, 15, 10],
+                        backgroundColor: [colors.navy, colors.blue, colors.green, colors.orange, colors.gray]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Income Source Chart
+            new Chart(document.getElementById('incomeSourceChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Self-Employed FL Work', 'Self-Employed NY Work', 'W-2 Remote (COTE applies)', 'Securities Trading'],
+                    datasets: [
+                        {
+                            label: 'NY Taxable',
+                            data: [0, 100, 100, 0],
+                            backgroundColor: colors.red
+                        },
+                        {
+                            label: 'FL Only (No NY Tax)',
+                            data: [100, 0, 0, 100],
+                            backgroundColor: colors.green
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Audit Timeline Chart
+            new Chart(document.getElementById('auditTimelineChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Notice', 'Info Request', 'Document Review', 'Field Audit', 'Draft Determination', 'Final Assessment', 'Appeal'],
+                    datasets: [{
+                        label: 'Typical Timeline (Months)',
+                        data: [0, 2, 6, 12, 18, 24, 36],
+                        borderColor: colors.blue,
+                        backgroundColor: 'rgba(0,168,225,0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + ' mo';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Budget Pie Chart
+            new Chart(document.getElementById('budgetChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Golf Membership ($400K)', 'POA Contribution ($25K)', 'Available for Home ($1.275M)'],
+                    datasets: [{
+                        data: [400000, 25000, 1275000],
+                        backgroundColor: [colors.navy, colors.blue, colors.green]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    const total = 1700000;
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return label + ': $' + value.toLocaleString() + ' (' + percentage + '%)';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
